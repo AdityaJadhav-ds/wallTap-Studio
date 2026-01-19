@@ -26,19 +26,6 @@ font-size: 1.6rem;
 font-weight: 700;
 color: #ffffff;
 }
-.nav-links button {
-background: transparent;
-border: none;
-color: #cccccc;
-font-size: 1rem;
-margin-left: 1.2rem;
-cursor: pointer;
-transition: all 0.3s ease;
-}
-.nav-links button:hover {
-color: #ff4b4b;
-transform: translateY(-2px);
-}
 .hero {
 padding: 5rem 3rem 3rem 3rem;
 text-align: center;
@@ -196,14 +183,12 @@ for i, project in enumerate(projects):
 title, desc, image_file = project
 image_path = os.path.join("assets", image_file)
 with cols[i % 3]:
+st.markdown('<div class="card">', unsafe_allow_html=True)
 if os.path.exists(image_path):
-st.markdown(f""" <div class="card"> <img src="data:image/png;base64,{st.image(image_path, use_container_width=True)._repr_png_().decode('latin1') if False else ''}" class="portfolio-image"/> <div class="card-title">{title}</div> <div class="card-desc">{desc}</div> </div>
-""", unsafe_allow_html=True)
 st.image(image_path, use_container_width=True)
-st.markdown(f""" <div class="card-title">{title}</div> <div class="card-desc">{desc}</div>
-""", unsafe_allow_html=True)
 else:
-st.markdown(f""" <div class="card"> <div class="portfolio-image"></div> <div class="card-title">{title}</div> <div class="card-desc">{desc}</div> </div>
+st.markdown('<div class="portfolio-image"></div>', unsafe_allow_html=True)
+st.markdown(f""" <div class="card-title">{title}</div> <div class="card-desc">{desc}</div> </div>
 """, unsafe_allow_html=True)
 
 def render_services():
@@ -232,7 +217,6 @@ Our vision is to redefine digital storytelling through cinematic design, emotion
 
 def render_contact():
 st.markdown('<div class="section"><div class="card-title">Contact</div></div>', unsafe_allow_html=True)
-with st.container():
 st.markdown('<div class="contact-container">', unsafe_allow_html=True)
 name = st.text_input("Name")
 email = st.text_input("Email")
